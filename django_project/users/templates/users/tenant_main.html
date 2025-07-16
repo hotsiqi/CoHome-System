@@ -1,0 +1,43 @@
+{% extends "Cohome/base.html" %}
+{% block content %}
+{% load static%}
+
+
+
+<div class="part-one">
+    <a href="{% url 'search_with_contracts'%}"id="link"><div class="transaction-sq">
+                 <p class="icon-txt">Search</p>
+                 <img class="icons" src="{% static 'sea-icon.png' %}" alt="">
+                </div></a>
+
+                <a href="{% url 'view_profile'%}" id="link"><div class="transaction-sq">
+                    <p class="icon-txt">profile</p>
+                    <img class="icons" src="{% static 'profile-icon.avif' %}" alt="">
+        
+                </div></a>
+                <a href="{% url 'tenant_transactions'%}" id="link"><div class="transaction-sq">
+                     <p class="icon-txt">transaction</p>
+                     <img class="icons" src="{% static 'transaction-icon.png' %}" alt="">
+                </div></a>
+
+</div>
+
+<div class="part-two">
+    <a href="{% url 'favorites'%}" id="link"><div class="transaction-sq">
+            <p class="icon-txt">Favourite</p>
+            <img class="icons" src="{% static 'favourite-icon.png' %}" alt="">
+                </div></a>
+                <a href="{% url 'notifications' %}" id="link"><div class="transaction-sq">
+            <p class="icon-txt">Notification</p>
+            <img class="icons" src="{% static 'Notification-icon.png' %}" alt="">
+                </div></a>
+                <a href="{% url 'tenant_rented_houses' %}" id="link"><div class="transaction-sq">
+             <p class="icon-txt">Payment</p>
+             <img class="icons" src="{% static 'Payment-icon.png' %}" alt="">
+                </div></a>
+               
+</div>
+</div>
+{% endblock content %}
+
+

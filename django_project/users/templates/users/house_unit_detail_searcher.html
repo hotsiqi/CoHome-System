@@ -1,0 +1,43 @@
+{% extends "Cohome/base.html" %}
+{% block content %}
+<div>
+    <h2>{{ house_unit.description }}</h2>
+    <p>Type: {{ house_unit.get_house_type_display }}</p>
+    <p>Price: {{ house_unit.price }}</p>
+    <p>Bedrooms: {{ house_unit.bedrooms }}</p>
+    <p>Status: <strong>{{ house_unit.get_status_display }}</strong></p>
+
+    <!-- Display House Images -->
+    <div class="house-images" style="margin-bottom: 20px;">
+        {% for image in house_unit.images.all %}
+            <img src="{{ image.image.url }}" alt="House image" style="margin-right: 10px;">
+        {% endfor %}
+    </div>
+
+    <!-- Display Contracts -->
+    <div class="house-contracts">
+        <h3>Contracts</h3>
+        {% for contract in house_unit.contracts.all %}
+            <div>
+                <a href="{{ contract.contract_file.url }}" target="_blank">View Contract</a>
+            </div>
+        {% empty %}
+            <p>No contracts available for this house unit.</p>
+        {% endfor %}
+    </div>
+
+    <form action="{% url 'add_to_favorites' house_unit.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Add to Favorites</button>
+    </form>
+    {% if is_tenant %}
+    <!-- Display tenant-specific payment button -->
+    <a href="{% url 'tenant_make_payment' house_unit.id %}" class="btn btn-primary">Make Payment</a>
+{% elif is_searcher and house_unit.status == 'available' %}
+    <!-- Display payment button for searchers only if the unit is available -->
+    <a href="{% url 'make_payment' house_unit.id %}" class="btn btn-primary">Make Payment</a>
+{% else %}
+    <p>This unit is currently rented out.</p>
+{% endif %}
+</div>
+{% endblock %}

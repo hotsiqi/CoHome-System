@@ -1,0 +1,20 @@
+{% extends "Cohome/base.html" %}
+{% block content %}
+<div>
+    <form method="get" action="{% url 'search_with_contracts' %}">
+        {{ search_form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if house_units.exists %}
+        <ul>
+        {% for unit in house_units %}
+            <li><a href="{% url 'house_unit_detail' unit.id %}">{{ unit.description }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <!-- Display this message if no house units match the search criteria -->
+        <p>There is no any house similar.</p>
+    {% endif %}
+</div>
+{% endblock %}

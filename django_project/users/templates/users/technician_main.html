@@ -1,0 +1,32 @@
+{% extends "Cohome/base.html" %}
+{% block content %}
+{% load static%}
+
+<div class="all-parts">
+            
+    <div class="part-one">
+      <a href="{%url 'users_list'%}" id="link"><div class="user-sq">
+         <p class="icon-txt">User</p>
+         <img class="icons" src="{% static 'profile-icon.avif' %}"alt="">
+
+     </div></a>
+     <a href="{%url 'manage_transactions'%}" id="link">
+         <div class="transaction-sq">
+          <p class="icon-txt">Transaction</p>
+          <img class="icons" src="{% static 'transaction-icon.png' %}" alt="">
+     </div></a>
+</div>
+
+<div class="part-two">
+     <a href="{%url 'submit_report'%}" id="link"><div class="report-sq">
+ <p class="icon-txt">Report</p>
+ <img class="icons" src="{% static 'report-icon.png' %}" alt="">
+     </div></a>
+     <a href="{%url 'contract'%}"  id="link"><div class="contract-sq">
+  <p class="icon-txt">Contract</p>
+  <img class="icons" src="{% static 'contract-icon.png' %}" alt="">
+     </div></a>
+    
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends "Cohome/base.html" %}
+{% block content %}
+{% load static %}
+<div class="container mt-5">
+    <h2>Payment Details</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Bank Transfer Information</h3>
+            <p><strong>Account Name:</strong> COHOME.SDN.BHD</p>
+            <p><strong>Bank Account Number:</strong> 1234567890</p>
+            <p><strong>Bank Name:</strong> Public bank</p>
+            <p>Please use your rental agreement number or your name as the payment reference.</p>
+        </div>
+        <div class="col-md-6">
+            <h3>Scan to Pay</h3>
+            <p>Scan the QR code below to make a payment directly from your banking app.</p>
+            <img src="{% static 'qr.jpg' %}" alt="QR Code for Payment" class="img-fluid">
+        </div>
+    </div>
+
+    <h2 class="mt-5">Upload Your Payment Proof</h2>
+    <p>After completing the payment, please upload the payment proof below.</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary">Upload Payment Proof</button>
+    </form>
+</div>
+{% endblock %}

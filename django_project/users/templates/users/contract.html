@@ -1,0 +1,21 @@
+{% extends "Cohome/base.html" %}
+{% block content %}
+<div>
+    <!-- Search Form: This should be outside any loop and condition checking the existence of house units -->
+    <form method="get">
+        {{ search_form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Search Results -->
+    {% if house_units.exists %}
+    <ul>
+    {% for unit in house_units %}
+        <li><a href="{% url 'house_unit_detail' unit.id %}">{{ unit.description }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>There are no houses matching your search criteria.</p>
+{% endif %}
+</div>
+{% endblock %}

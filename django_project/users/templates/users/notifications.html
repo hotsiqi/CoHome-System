@@ -1,0 +1,27 @@
+{% extends 'Cohome/base.html' %}
+
+{% block content %}
+<h2>Notifications</h2>
+
+{% if notifications %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Message</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for notification in notifications %}
+        <tr{% if not notification.read %} class="font-weight-bold"{% endif %}>
+            <td>{{ notification.message }}</td>
+            <td>{{ notification.created_at|date:"Y-m-d H:i" }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>There are no notifications yet.</p>
+{% endif %}
+
+{% endblock %}

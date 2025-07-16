@@ -1,0 +1,57 @@
+{% extends 'Cohome/base.html' %}
+{% block content %}
+<h2>Manage Transactions</h2>
+{% if transactions.exists %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Transaction ID</th>
+                  <th scope="col">User</th>
+                  <th scope="col">House Unit</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Verified</th>
+                  <th scope="col">Payment Proof</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+          <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.user.username }}</td>
+                <td>{{ transaction.house_unit.description }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.transaction_date|date:"Y-m-d H:i" }}</td>
+                <td>
+                    {% if transaction.verified_at %}
+                      Yes ({{ transaction.verified_at|date:"Y-m-d H:i" }})
+                    {% else %}
+                      No
+                    {% endif %}
+                </td>
+                <td>
+                    {% for proof in transaction.payment_proofs.all %}
+                      <a href="{{ proof.proof.url }}" target="_blank">View</a><br>
+                    {% empty %}
+                      No Proof Uploaded
+                    {% endfor %}
+                </td>
+                <td>
+                    {% if not transaction.verified_at %}
+                    <a href="{% url 'verify_transaction' transaction.id %}" class="verify-button">Verify</a>
+                    <a href="{% url 'not_verify_transaction' transaction.id %}" class="btn btn-danger btn-sm">Not Verify</a>
+                    {% else %}
+                      Verified
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+{% else %}
+    <p>No transactions pending verification.</p>
+{% endif %}
+{% endblock %}

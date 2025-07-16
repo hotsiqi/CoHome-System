@@ -1,0 +1,230 @@
+{% extends "Cohome/base.html" %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Co Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <style>
+    .text{
+      text-align: center;
+      margin: 30px;
+      height: 200px;
+      margin: 0 auto;
+   
+  }
+  .HW{
+      font-size: 2rem;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      text-transform: uppercase;
+      
+  }
+  .choices{
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      width: 500px;
+      height: 300px;
+  
+  }
+  #linkk{
+      text-decoration: none;
+      color: black;
+  
+  }
+  
+  .searcher-page, .owner-page{
+      opacity: 99%;
+      width: 90%;
+      height: 20rem;
+      text-align: left;
+      border-radius: 5px;
+  
+  }
+  
+  #color-own{
+      background-color: rgb(92, 164, 169);
+  }
+  #color-sea{
+      background-color:rgb(237, 237, 237);
+  
+  }
+  .head-point{
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      text-transform: uppercase;
+      margin-left: 8px;
+  }
+
+
+  .log-in{
+      background-color: rgb(182, 239, 96);
+      border-radius: 10px;
+      width: 80px;
+      height: 40px;
+      border: none;
+      display: flex;
+      justify-content: end;
+      align-items: end;
+      padding: 10px 10px;
+      font-size: 15px;
+      cursor: pointer;
+      float: right;
+  
+  }
+  .help{
+      background-color: rgb(34, 233, 184);
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      border: none;
+      margin-top: 50px;
+      
+  }
+  .dis{
+      font-size: 10px;
+      font-family:Georgia, 'Times New Roman', Times, serif;
+  }
+  .greeting{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 18px;
+  }
+  .web-name{
+      color: rgb(77, 153, 0);
+      font-family:fantasy;
+  }
+  .role-text, .choosing{
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 18px;
+  
+  }
+  #role-txt{
+      font-weight: bold;
+  }
+  .icon{
+      width: 50%;
+      margin-left: 20%;
+  }
+  body::before {
+    content: "";
+    position: absolute;
+  background-size: cover; /* Cover the entire page */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    opacity: 0.5; /* Adjust the opacity as needed */
+    z-index: -1; /* Ensure it's behind the content */    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('{% static "given.jpg" %}');
+  
+}
+
+body, html {
+    height: 100%; /* Ensure full page height */
+    margin: 0; /* Remove default margin */
+    position: relative; /* Needed for the absolute positioning of the pseudo-element */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+  .imgg{
+    position: absolute;
+    margin-top: 390px;
+    opacity: 30%;
+    width: 100%;
+    height: 325%;
+    transform: translateY(-90%);
+    z-index: -1; /* Ensure it's behind other content */
+
+    background-size:cover;
+  }
+  .intro{
+      display: flex;
+      justify-content: space-between;
+  }
+  .logo{
+      width: 15%;
+      height: 15%;
+  }
+  .outro{
+  display: flex;
+  justify-content: end;
+  opacity: 99%;
+  }
+  #registration{
+      margin-left:55%;
+  }
+  #log-in-icon{
+      float: right;
+  }
+  #greeting{
+      font-family: 'caveat';
+      margin-top: 20px;
+      font-size: 20px;
+      text-transform: uppercase;
+  
+  }
+  #home-color{
+      color: rgb(182, 239, 96);
+  }
+  
+  @media (min-width: 540px){
+      .container {
+          flex-direction: row;
+          justify-content: space-between;
+      }
+      .log-in,
+      .intro,
+      .text,
+      .outro {
+          width: 100%;
+      }
+  
+      /* Add styles for .log-in class within the media query */
+      .log-in {
+          width: auto; /* Add your desired styles for the .log-in class */
+      }
+     
+  }
+  
+  </style>
+
+        <div class="text">
+            <p class="HW">welcome to <span class="web-name">co Home</span></p>
+            <p class="choosing">Please Select your <span id="role-txt" class="role-text">Role...</span></p>
+        </div>
+        <div class="choices">
+             <a href="{% url 'register' %}" id="linkk">
+                <div id="color-sea" class="searcher-page">
+                
+                <p class="head-point">Searcher</p>
+            
+                    <img class="icon" src="{% static 'Search-icon.png' %}" alt="">
+                <ul>
+                    <li><p class="dis">Search for house</p></li>
+                    <li><p class="dis">Filter provided</p></li>
+                    <li><p class="dis">easy payment</p></li>
+                </ul>
+          
+            </div>
+            </a>
+            <a href="{% url 'owner_register' %}"id="linkk">
+            <div id="color-own" class="owner-page">
+                <p class="head-point">Owner</p>
+                
+                <img class="icon" src= "{% static 'House-icon.png' %}" >
+                <ul>
+                    <li><p class="dis">publish house for rent</p></li>
+                    <li><p class="dis">need ownership document</p></li>
+                    
+                </ul>
+            </div>
+        </a>
+        </div>
+    </div>
+
+{% endblock content %}

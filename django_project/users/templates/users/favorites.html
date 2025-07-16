@@ -1,0 +1,18 @@
+{% extends "Cohome/base.html" %}
+{% block content %}
+<div>
+    <h2>My Favorites</h2>
+    {% for favorite in favorites %}
+        <div>
+            
+            <h3><a href="{% url 'house_unit_detail' favorite.house_unit.id %}">{{ favorite.house_unit.description }}</a></h3>
+            <p>Type: {{ favorite.house_unit.get_house_type_display }}</p>
+            <p>Price: {{ favorite.house_unit.price }}</p>
+            <p>Bedrooms: {{ favorite.house_unit.bedrooms }}</p>
+            
+        </div>
+    {% empty %}
+        <p>No favorite houses added.</p>
+    {% endfor %}
+</div>
+{% endblock %}

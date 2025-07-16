@@ -1,0 +1,23 @@
+{% extends 'Cohome/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Edit Profile</h2>
+    <form method="post" action=".">
+        {% csrf_token %}
+        {{ profile_form.as_p }}
+        <input type="submit" name="profile_form_submit" value="Save Profile Changes" class="btn btn-primary">
+    </form>
+
+    <hr>
+
+    <h2>Change Password</h2>
+    <form method="post" action=".">
+        {% csrf_token %}
+        {{ password_form.as_p }}
+        <input type="submit" name="password_form_submit" value="Change Password" class="btn btn-primary">
+    </form>
+
+    <a href="{% url 'view_profile' %}" class="btn btn-secondary">Back to Profile</a>
+</div>
+{% endblock %}

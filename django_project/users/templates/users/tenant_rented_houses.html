@@ -1,0 +1,19 @@
+{% extends 'Cohome/base.html' %} 
+
+{% block content %}
+<h2>Houses You're Renting</h2>
+
+{% if rented_houses %}
+    <ul>
+        {% for house in rented_houses %}
+        <li>
+            {{ house.description }} - 
+            <a href="{% url 'tenant_make_payment' house.id %}">Make Payment</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You are not renting any houses yet.</p>
+{% endif %}
+
+{% endblock %}

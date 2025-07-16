@@ -1,0 +1,30 @@
+{% extends "Cohome/base.html" %}
+{% block content %}
+{% load static%}
+
+        <div class="part-one">
+           
+                        <a href="{% url 'view_profile'%}" id="link"><div class="profile-sq">
+                            <p class="icon-txt">profile</p>
+                            <img class="icons" src="{% static 'profile-icon.avif' %}" alt="">
+                
+                        </div></a>
+                        <a href="{% url 'view_transactions_for_owner' %}" id="link"><div class="profile-sq">
+                             <p class="icon-txt">transaction</p>
+                             <img class="icons" src="{% static 'transaction-icon.png' %}" alt="">
+                        </div></a>
+        </div>
+
+        <div class="part-two">
+                        <a href="{% url 'notifications' %}" id="link"><div class="notification-sq">
+                    <p class="icon-txt">Notification</p>
+                    <img class="icons" src="{% static 'Notification-icon.png' %}" alt="">
+                        </div></a>
+                        <a href="{% url 'post_unit'%}" id="link"><div class="post-unit-sq">
+                     <p class="icon-txt">Post unit</p>
+                     <img class="icons" src="{% static 'post-unit-icon.png' %}" alt="">
+                        </div></a>
+                       
+        </div>
+
+{% endblock content %}

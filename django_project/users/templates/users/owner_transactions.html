@@ -1,0 +1,28 @@
+{% extends 'Cohome/base.html' %}
+
+{% block content %}
+<h2>Your Transactions</h2>
+
+{% if transactions %}
+    <table>
+        <tr>
+            <th>Transaction ID</th>
+            <th>House Unit</th>
+            <th>Tenant</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction.id }}</td>
+            <td>{{ transaction.house_unit.description }}</td>
+            <td>{{ transaction.user.email }}</td>
+            <td>{{ transaction.amount }}</td>
+            <td>{{ transaction.transaction_date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No transactions found.</p>
+{% endif %}
+{% endblock %}

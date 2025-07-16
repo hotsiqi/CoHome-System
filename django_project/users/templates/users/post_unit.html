@@ -1,0 +1,13 @@
+
+{% extends "Cohome/base.html" %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ formset.management_form }}
+    {% for form in formset %}
+        {{ form.as_p }}
+    {% endfor %}
+    <button type="submit">Post House</button>
+</form>
+{% endblock %}

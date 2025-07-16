@@ -1,0 +1,24 @@
+{% extends "Cohome/base.html" %}
+{% block content %}
+<div>
+    <h2>{{ house_unit.description }}</h2>
+    <p>Type: {{ house_unit.get_house_type_display }}</p>
+    <p>Price: {{ house_unit.price }}</p>
+    <p>Bedrooms: {{ house_unit.bedrooms }}</p>
+
+    <!-- Display House Images -->
+    <div class="house-images">
+        {% for image in house_unit.images.all %}
+            <img src="{{ image.image.url }}" alt="House image" style="max-width:100%; height:auto;">
+        {% endfor %}
+    </div>
+
+    <!-- Upload Contract Form -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <button type="submit">Upload Contract</button>
+    
+</div>
+{% endblock %}
